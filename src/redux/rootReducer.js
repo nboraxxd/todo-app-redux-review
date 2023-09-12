@@ -13,10 +13,18 @@ const initState = {
 const rootReducer = (state = initState, action) => {
   switch (action.type) {
     case ACTION_TYPES.addTodo:
-      console.log(state, action.payload)
       return {
         ...state,
         todoList: [...state.todoList, action.payload],
+      }
+
+    case ACTION_TYPES.searchFilterChange:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          search: action.payload,
+        },
       }
 
     default:

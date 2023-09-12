@@ -6,3 +6,10 @@ export const addTodo = (todo) => {
     payload: todo,
   }
 }
+
+export const searchFilterChange = (searchText) => {
+  return {
+    type: ACTION_TYPES.searchFilterChange,
+    payload: searchText,
+  }
+}

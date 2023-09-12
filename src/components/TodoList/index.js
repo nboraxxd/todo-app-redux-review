@@ -4,15 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Col, Row, Input, Button, Select, Tag } from 'antd'
 import Todo from '../Todo'
 import { addTodo } from '../../redux/actions'
-import { todoListSelector } from '../../redux/selector'
+import { todoListRemainingSelector } from '../../redux/selector'
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
   const [todoPriority, setTodoPriority] = useState('Medium')
 
   const dispatch = useDispatch()
-  const todoList = useSelector(todoListSelector)
-  console.log('🔥 ~ TodoList ~ todoList:', todoList)
+  const todoList = useSelector(todoListRemainingSelector)
 
   function handleAddTodo() {
     dispatch(
