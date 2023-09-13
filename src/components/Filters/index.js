@@ -1,7 +1,9 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import { prioritiesFilterChange, searchFilterChange, statusFilterChange } from '../../redux/actions'
+
 import { prioritiesFilterSelector, searchTextSelector, statusFilterSelector } from '../../redux/selector'
+import filtersSlice from './filtersSlice'
+
 
 const { Search } = Input
 
@@ -20,14 +22,14 @@ export default function Filters() {
         <Search
           placeholder="input search text"
           value={searchText}
-          onChange={(ev) => dispatch(searchFilterChange(ev.target.value))}
+          onChange={(ev) => dispatch(filtersSlice.actions.searchFilterChange(ev.target.value))}
         />
       </Col>
       <Col sm={24}>
         <Typography.Paragraph style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}>
           Filter By Status
         </Typography.Paragraph>
-        <Radio.Group value={status} onChange={(ev) => dispatch(statusFilterChange(ev.target.value))}>
+        <Radio.Group value={status} onChange={(ev) => dispatch(filtersSlice.actions.statusFilterChange(ev.target.value))}>
           <Radio value="All">All</Radio>
           <Radio value="Completed">Completed</Radio>
           <Radio value="Todo">To do</Radio>
@@ -43,7 +45,7 @@ export default function Filters() {
           placeholder="Please select"
           style={{ width: '100%' }}
           value={priorities}
-          onChange={(ev) => dispatch(prioritiesFilterChange(ev))}
+          onChange={(ev) => dispatch(filtersSlice.actions.prioritiesFilterChange(ev))}
         >
           <Select.Option value="High" label="High">
             <Tag color="red">High</Tag>

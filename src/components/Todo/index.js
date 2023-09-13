@@ -1,7 +1,7 @@
+import { memo } from 'react'
 import { Row, Tag, Checkbox } from 'antd'
 import { useDispatch } from 'react-redux'
-import { todoStatusChange } from '../../redux/actions'
-import { memo } from 'react'
+import todoListSlice from '../TodoList/todoListSlice'
 
 const priorityColorMapping = {
   High: 'red',
@@ -21,7 +21,7 @@ const Todo = memo(
           ...(isCompleted === true ? { opacity: 0.5, textDecoration: 'line-through' } : {}),
         }}
       >
-        <Checkbox checked={isCompleted} onChange={() => dispatch(todoStatusChange(id))}>
+        <Checkbox checked={isCompleted} onChange={() => dispatch(todoListSlice.actions.todoStatusChange(id))}>
           {name}
         </Checkbox>
         <Tag color={priorityColorMapping[priority]} style={{ margin: 0 }}>
