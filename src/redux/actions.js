@@ -13,3 +13,17 @@ export const searchFilterChange = (searchText) => {
     payload: searchText,
   }
 }
+
+export const statusFilterChange = (status) => {
+  return {
+    type: ACTION_TYPES.statusFilterChange,
+    payload: status,
+  }
+}
+
+export const todoStatusChange = (id) => {
+  return {
+    type: ACTION_TYPES.todoStatusChange,
+    payload: id,
+  }
+}

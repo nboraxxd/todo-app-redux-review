@@ -1,20 +1,17 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { searchFilterChange } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { searchFilterChange, statusFilterChange } from '../../redux/actions'
+import { searchTextSelector, statusFilterSelector } from '../../redux/selector'
 
 const { Search } = Input
 
 export default function Filters() {
-  const [searchText, setSearchText] = useState()
-  const [status, setStatus] = useState('All')
   const [_priorityList, _setPriorityList] = useState([])
-  const dispatch = useDispatch()
 
-  const handleOnChangeSearchText = (e) => {
-    setSearchText(e.target.value)
-    dispatch(searchFilterChange(e.target.value))
-  }
+  const dispatch = useDispatch()
+  const searchText = useSelector(searchTextSelector)
+  const status = useSelector(statusFilterSelector)
 
   return (
     <Row justify="center">
@@ -22,13 +19,17 @@ export default function Filters() {
         <Typography.Paragraph style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}>
           Search
         </Typography.Paragraph>
-        <Search placeholder="input search text" value={searchText} onChange={handleOnChangeSearchText} />
+        <Search
+          placeholder="input search text"
+          value={searchText}
+          onChange={(ev) => dispatch(searchFilterChange(ev.target.value))}
+        />
       </Col>
       <Col sm={24}>
         <Typography.Paragraph style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}>
           Filter By Status
         </Typography.Paragraph>
-        <Radio.Group>
+        <Radio.Group value={status} onChange={(ev) => dispatch(statusFilterChange(ev.target.value))}>
           <Radio value="All">All</Radio>
           <Radio value="Completed">Completed</Radio>
           <Radio value="Todo">To do</Radio>
