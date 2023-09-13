@@ -1,34 +1,11 @@
-import { todoList } from '../constants/todoList'
-import { ACTION_TYPES } from './actionTypes'
+import filtersReducer from '../components/Filters/FiltersSlice'
+import todoListReducer from '../components/TodoList/TodoListSlice'
 
-const initState = {
-  filters: {
-    search: '',
-    status: 'All',
-    priority: [],
-  },
-  todoList,
-}
-
-const rootReducer = (state = initState, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.addTodo:
-      return {
-        ...state,
-        todoList: [...state.todoList, action.payload],
-      }
-
-    case ACTION_TYPES.searchFilterChange:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          search: action.payload,
-        },
-      }
-
-    default:
-      return state
+const rootReducer = (state = {}, action) => {
+  console.log(state)
+  return {
+    filters: filtersReducer(state.filter, action),
+    todoList: todoListReducer(state.todoList, action),
   }
 }
 
