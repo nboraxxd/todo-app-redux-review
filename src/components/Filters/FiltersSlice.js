@@ -21,7 +21,6 @@ const filtersReducer = (state = initState, action) => {
       }
 
     case ACTION_TYPES.prioritiesFilterChange:
-      console.log(action.payload)
       return {
         ...state,
         priorities: action.payload,
