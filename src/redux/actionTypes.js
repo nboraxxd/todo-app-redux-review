@@ -3,6 +3,5 @@ export const ACTION_TYPES = {
   todoStatusChange: 'todoList/todoStatusChange',
   searchFilterChange: 'filters/searchFilterChange',
   statusFilterChange: 'filters/statusFilterChange',
-  priorityFilterChange: 'filters/statusFilterChange',
-
+  prioritiesFilterChange: 'filters/prioritiesFilterChange',
 }

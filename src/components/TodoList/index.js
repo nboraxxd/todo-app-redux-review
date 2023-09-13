@@ -14,6 +14,7 @@ export default function TodoList() {
   const todoList = useSelector(todoListRemainingSelector)
 
   function handleAddTodo() {
+    if (todoName.trim() === '') return
     dispatch(
       addTodo({
         id: uuidv4(),
@@ -51,7 +52,7 @@ export default function TodoList() {
               <Tag color="gray">Low</Tag>
             </Select.Option>
           </Select>
-          <Button type="primary" onClick={handleAddTodo}>
+          <Button type="primary" onClick={handleAddTodo} disabled={todoName.trim() === ''}>
             Add
           </Button>
         </Input.Group>

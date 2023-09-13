@@ -1,17 +1,15 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd'
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchFilterChange, statusFilterChange } from '../../redux/actions'
-import { searchTextSelector, statusFilterSelector } from '../../redux/selector'
+import { prioritiesFilterChange, searchFilterChange, statusFilterChange } from '../../redux/actions'
+import { prioritiesFilterSelector, searchTextSelector, statusFilterSelector } from '../../redux/selector'
 
 const { Search } = Input
 
 export default function Filters() {
-  const [_priorityList, _setPriorityList] = useState([])
-
   const dispatch = useDispatch()
   const searchText = useSelector(searchTextSelector)
   const status = useSelector(statusFilterSelector)
+  const priorities = useSelector(prioritiesFilterSelector)
 
   return (
     <Row justify="center">
@@ -39,7 +37,14 @@ export default function Filters() {
         <Typography.Paragraph style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}>
           Filter By Priority
         </Typography.Paragraph>
-        <Select mode="multiple" allowClear placeholder="Please select" style={{ width: '100%' }}>
+        <Select
+          mode="multiple"
+          allowClear
+          placeholder="Please select"
+          style={{ width: '100%' }}
+          value={priorities}
+          onChange={(ev) => dispatch(prioritiesFilterChange(ev))}
+        >
           <Select.Option value="High" label="High">
             <Tag color="red">High</Tag>
           </Select.Option>

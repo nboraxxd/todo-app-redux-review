@@ -7,6 +7,13 @@ export const addTodo = (todo) => {
   }
 }
 
+export const todoStatusChange = (id) => {
+  return {
+    type: ACTION_TYPES.todoStatusChange,
+    payload: id,
+  }
+}
+
 export const searchFilterChange = (searchText) => {
   return {
     type: ACTION_TYPES.searchFilterChange,
@@ -21,9 +28,9 @@ export const statusFilterChange = (status) => {
   }
 }
 
-export const todoStatusChange = (id) => {
+export const prioritiesFilterChange = (priorities) => {
   return {
-    type: ACTION_TYPES.todoStatusChange,
-    payload: id,
+    type: ACTION_TYPES.prioritiesFilterChange,
+    payload: priorities,
   }
 }
